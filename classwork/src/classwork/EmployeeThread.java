@@ -3,8 +3,29 @@ package classwork;
 import java.util.Random;
 
 class ReadyEmployee{
-	public void customerNumber(){
+	public static int custNum;
+	public void customerNumber(String number){
+		int time;
+		Random rand=new Random();
+		String threadNum=number;
 		
+		System.out.println("Employee "+threadNum+" is now taking customers.");
+		try{
+			for(int i=5;i>0;i--){
+				System.out.println("Employee "+threadNum+" servicing customer "+ReadyEmployee.getNumber());
+				time=rand.nextInt(500); 
+				notifyAll();
+				Thread.sleep(time);
+				wait();
+			}
+		}catch(InterruptedException e){
+			System.out.println("Employee "+threadNum+" is in danger!");
+		}
+	}
+	
+	public static int getNumber(){
+		custNum++;
+		return custNum;
 	}
 }
 
@@ -23,25 +44,10 @@ public class EmployeeThread extends Thread{
 	public void run(){
 		synchronized(RE){
 			
-			RE.customerNumber();
-		}
-		int time;
-		Random rand=new Random();
-		
-		
-		System.out.println("Employee "+threadNum+" is now taking a customer.");
-		try{
-			for(int i=4;i>0;i--){
-				System.out.println("Employee "+threadNum+" servicing customer "+i);
-				//time=rand.nextInt(100); 
-				time=20;
-				Thread.sleep(time);
-			}
-		}catch(InterruptedException e){
-			System.out.println("Employee "+threadNum+" is in danger!");
+			RE.customerNumber(threadNum);
 		}
 		
-		System.out.println("Employee "+threadNum+" is calling it a night.");
+		System.out.println("Employee "+threadNum+" is going to take a break.");
 	}
 	
 	public void start(){

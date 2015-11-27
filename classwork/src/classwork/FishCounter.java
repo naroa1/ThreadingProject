@@ -1,7 +1,7 @@
 package classwork;
 
 public class FishCounter extends Thread{
-	private static int customerNumber=1;
+	private static int customerNumber=0;
 	
 	public static void main(String[] args)
 	{
@@ -19,9 +19,6 @@ public class FishCounter extends Thread{
 	}
 	
 	public static int getCustomer(){
-		customerNumber++;
 		return customerNumber;
 	}
-	//as it stands, all the employees are taking 4 customers. Just need to
-	//change the form of how they're taking customers and then it's... done?
 }
