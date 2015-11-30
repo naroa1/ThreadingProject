@@ -14,6 +14,7 @@ class ReadyEmployee{
 			for(int i=5;i>0;i--){
 				System.out.println("Employee "+threadNum+" servicing customer "+ReadyEmployee.getNumber());
 				time=rand.nextInt(500); 
+				System.out.println("This customer is going to take: "+time+" ms to service.\n");
 				notifyAll();
 				Thread.sleep(time);
 				wait();
